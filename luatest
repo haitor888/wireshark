@@ -1,0 +1,206 @@
+function toLog(logmsg)
+  local time = os.date("%Y/%m/%d %H:%M:%S", os.time());
+  local year, mon, mday, hour, min, sec = string.match(time, "(%d+)/(%d+)/(%d+) (%d+):(%d+):(%d+)");
+  local file = io.open("/Users/georgehu/Desktop/testlua.log","a")
+  file:write(string.format("%d-%d-%d %02d:%02d:02d",year,mon,mday,hour,min,sec)..logmsg.."\n")
+  file:close()
+end
+function loadfile(filename)
+  local info = debug.getinfo(1,"S")
+  local path = info.source
+  path = string.sub(path, 2, -1) -- 去掉开头的"@"
+  path = string.match(path, "^.*/") -- 捕获最后一个 "/" 之前的部分 就是我们最终要的目录部分
+  local logmsg = "LoadFile:"..path..filename
+  local file = io.open(path..filename ,"rb")
+  if file then file:close() end
+  logmsg = logmsg.."("..string.format("%d",file~=nil and 1 or 0 )..")" 
+  toLog(logmsg)
+  dofile(path..filename)
+end
+-------------------------------------------define end----------
+
+local pb = require "pb"
+--loadfile("protoc.lua")
+local protoc = require "protoc"
+local json = require "json"
+-- load schema from text
+assert(protoc:load [[
+   message Phone {
+      optional string name        = 1;
+      optional int64  phonenumber = 2;
+   }
+   message Person {
+      optional string name     = 1;
+      optional int32  age      = 2;
+      optional string address  = 3;
+      repeated Phone  contacts = 4;
+   } 
+   message TGCPBase {
+    optional int32 Magic = 1;
+    optional uint32 HeadVersion = 2;
+    optional uint32 BodyVersion = 3;
+    optional uint32 Command = 4;
+    optional uint32 Encrypted = 5;
+    optional uint32 Sequence = 6;
+    optional uint32 HeadLen = 7;
+    optional uint32 BodyLen = 8;
+   }
+    
+   ]])
+
+-- lua table data
+local data = {
+   name = "ilse",
+   age  = 18,
+   contacts = {
+      { name = "alice", phonenumber = 12312341234 },
+      { name = "bob",   phonenumber = 45645674567 }
+   }
+}
+
+-- encode lua table data into binary format in lua string and return
+local bytes = assert(pb.encode("Person", data))
+toLog(pb.tohex(bytes))
+
+-- and decode the binary data back into lua table
+local data2 = assert(pb.decode("Person", bytes))
+toLog(require "serpent".block(data2))
+
+do  
+    local tgcp_cmd ={["0x1001"]="上行，握手", 
+            ["0x1002"]="下行，响应",
+            ["0x2001"]="上行，认证请求",
+            ["0x2002"]="下行，认证响应",
+            ["0x3002"]="下行，排队信息",
+            ["0x4013"]="双向，数据",
+            ["0x5001"]="上行，CLIENT 发起断开",
+            ["0x5002"]="下行，TCONND 发起断开",
+            ["0x6002"]="下行，通知客户端连接已建立",
+            ["0x7001"]="上行，鉴权刷新请求",
+            ["0x7002"]="双向，鉴权刷新通知",
+            ["0x8002"]="下行，TCONND发起路由切换的命令",
+            ["0x9001"]="双向，心跳探测",
+
+
+    }
+
+    local p_myproto = Proto("myproto","MyProto")  
+    local f_magic = ProtoField.int16("myproto.f_magic", "magic", base.DEC)  
+    local f_headVersion = ProtoField.int16("myproto.f_headVersion", "HeadVersion", base.DEC, {[0] = "old", [11] = "new"}) 
+    local f_bodyVersion = ProtoField.int16("myproto.f_bodyVersion", "bodyVersion", base.DEC, {[0] = "old", [11] = "new"}) 
+    local f_cmdid = ProtoField.uint16("myproto.f_cmdid", "cmdId", base.HEX) 
+    
+    local f_encrypt = ProtoField.uint8("myproto.f_encrypt", "f_encrypt", base.DEC)  
+    local f_sequence = ProtoField.uint32("myproto.f_sequence", "f_sequence", base.DEC) 
+
+    local f_headlength = ProtoField.uint32("myproto.f_headlength", "f_headlength", base.DEC)  
+    local f_bodylength = ProtoField.uint32("myproto.f_bodylength", "f_bodylength", base.DEC) 
+
+    --local f_feedback = ProtoField.int32("myproto.feedback", "Feedback", base.DEC)  
+    --local f_bodylen = ProtoField.uint32("myproto.bodylen", "BodyLen", base.DEC)  
+    local f_body = ProtoField.bytes("myproto.body", "Body")  
+    local f_json = ProtoField.string("myproto.json", "json")  
+    p_myproto.fields = { f_magic, f_headVersion,f_bodyVersion,f_cmdid, f_encrypt, f_sequence, f_headlength, f_bodylength, f_body ,f_json}  
+  
+    local data_dis = Dissector.get("data")  
+  
+    function myproto_parseCmd(buf,cmdid)
+        local js= {}
+        js["DataLength"] = buf:len()
+        local jsbody={}
+        if cmdid == "0x2001" then 
+          jsbody["authType"] = string.format( "%d", "0x"..buf(0 ,2))
+          jsbody["size"] = string.format( "%d", "0x"..buf(2,2))
+          jsbody["appid"] = string.format( "%d", "0x"..buf(4,1))
+          jsbody["authlen"] = string.format( "%d", "0x"..buf(5,2))
+          jsbody["authinfo"] = string.format( "%d", "0x"..buf(7,1))
+          js["TGCPAuthReqBody"]= jsbody
+        elseif cmdid=="0x2002" then
+          jsbody["account_type"] = string.format( "%d", "0x"..buf(0 ,2))
+          jsbody["account_format"] = string.format( "%d", "0x"..buf(2 ,1))
+
+          jsbody["account_uid"] = string.format( "%ul", "0x"..buf(buf:len()-8 ,8))
+          --if()
+          jsbody["account_value"] = string.format( "%d", "0x"..buf(buf:len()-11 ,2))
+          --jsbody["account_uid"] = string.format( "%d", "0x"..buf(buf:len()-8 ,8))
+          js["TGCPAuthRspBody"]= jsbody
+        elseif cmdid=="0x2002" then
+          
+        else
+          --js={cmdid}
+        end
+        return js
+    end 
+    function myproto_dissector(buf, pinfo, root) 
+        local buf_len = buf:len()  
+        --判断长度是否符合头长度  
+        if buf_len < 21 then return false end  
+  
+        local t = root:add(p_myproto, buf)  
+        local offset = 0
+        t:add(f_magic, buf(offset, 2)) 
+        offset = offset+2 
+        t:add(f_headVersion, buf(offset, 2)) 
+        offset = offset+2 
+        t:add(f_bodyVersion, buf(offset, 2)) 
+        offset = offset+2 
+        t:add(f_cmdid, buf(offset, 2))
+        local tmp_cmdName = "0x"..buf(offset, 2)
+        local cmdid = tmp_cmdName
+        if tmp_cmdName == nil then
+            tmp_cmdName = "0x"..buf(offset, 2)
+        elseif tgcp_cmd["0x"..buf(offset, 2)] ~=nil then
+            tmp_cmdName = "0x"..buf(offset, 2)..tgcp_cmd["0x"..buf(offset, 2)]
+        end 
+        print("protobuf"..tmp_cmdName)
+        pinfo.cols.protocol:set("protobuf"..tmp_cmdName)
+        offset = offset+2 
+
+
+        t:add(f_encrypt, buf(offset, 1)) 
+        offset = offset+1
+
+        t:add(f_sequence, buf(offset, 4))  
+        offset = offset+4
+
+        t:add(f_headlength, buf(offset, 4)) 
+        local headLen = string.format( "%d", "0x"..buf(offset, 4))
+        print(headLen)
+        offset = offset+4 
+        t:add(f_bodylength, buf(offset, 4)) 
+        local bodyLen = string.format( "%d", "0x"..buf(offset, 4))
+        offset = offset+4
+
+        pinfo.cols.protocol:append("godGames");
+        --t:add(f_feedback, buf(20, 4))  
+        --t:add(f_bodylen, buf(24, 4))  
+        if buf_len > 21 then  
+            t:add(f_body, buf( headLen,buf:len()-headLen  ))  --t:add(f_body, buf( headLen,bodyLen )) 
+        end  
+        
+        local js = myproto_parseCmd(buf(headLen,buf:len()-headLen ),cmdid)
+        t:add(f_json,json.encode(js)) 
+        ---------------test start--------------------
+        local data2 = assert(pb.decode("TGCPBase", bytes  ))
+        toLog(require "serpent".block(data2))
+
+
+
+        ---------------test end --------------------
+        return true  
+    end  
+  
+    function p_myproto.dissector(buf, pkt, root)   
+        if myproto_dissector(buf, pkt, root) then  
+            --valid myproto diagram  
+        else  
+            data_dis:call(buf, pkt, root)  
+        end  
+    end  
+  
+    --解析TCP8001端口数据包  
+     local tcp_encap_table = DissectorTable.get("tcp.port")  
+    tcp_encap_table:add(8096, p_myproto)  
+
+    --dofile(path.."protobuf.lua")
+end  
