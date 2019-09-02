@@ -2,7 +2,7 @@ function toLog(logmsg)
   local time = os.date("%Y/%m/%d %H:%M:%S", os.time());
   local year, mon, mday, hour, min, sec = string.match(time, "(%d+)/(%d+)/(%d+) (%d+):(%d+):(%d+)");
   local file = io.open("/Users/georgehu/Desktop/testlua.log","a")
-  file:write(string.format("%d-%d-%d %02d:%02d:02d",year,mon,mday,hour,min,sec)..logmsg.."\n")
+  file:write(string.format("%d-%d-%d %02d:%02d:02d",year,mon,mday,hour,min,sec).."    "..logmsg.."\n")
   file:close()
 end
 function loadfile(filename)
@@ -66,6 +66,7 @@ toLog(pb.tohex(bytes))
 local data2 = assert(pb.decode("Person", bytes))
 toLog(require "serpent".block(data2))
 
+
 do  
     local tgcp_cmd ={["0x1001"]="上行，握手", 
             ["0x1002"]="下行，响应",
@@ -104,7 +105,16 @@ do
   
     local data_dis = Dissector.get("data")  
   
-    function myproto_parseCmd(buf,cmdid)
+    function getGamePkgData(buf)
+        if buf:len() == 0 then
+          return buf
+        elseif "0x"..buf(0 ,2) == "0x55aa" then
+          return buf
+        else 
+          return buf(8,buf:len()-8 )
+        end
+    end
+    function myproto_parseCmd(buf,cmdid,pinfo)
         local js= {}
         js["DataLength"] = buf:len()
         local jsbody={}
@@ -125,9 +135,16 @@ do
           --jsbody["account_uid"] = string.format( "%d", "0x"..buf(buf:len()-8 ,8))
           js["TGCPAuthRspBody"]= jsbody
         elseif cmdid=="0x2002" then
-          
+          --
+        elseif cmdid=="0x4013" then
+          buf = getGamePkgData(buf)
+          jsbody["cmdid"] = "0x"..buf(14 ,2)
+          pinfo.cols.protocol:append(jsbody["cmdid"] )
+          --toLog(buf:len() ..". "..jsbody["cmdid"]  )
+          js["TGCPDATABody"]= jsbody
+          --
         else
-          --js={cmdid}
+          js["other"]= buf
         end
         return js
     end 
@@ -152,8 +169,8 @@ do
         elseif tgcp_cmd["0x"..buf(offset, 2)] ~=nil then
             tmp_cmdName = "0x"..buf(offset, 2)..tgcp_cmd["0x"..buf(offset, 2)]
         end 
-        print("protobuf"..tmp_cmdName)
-        pinfo.cols.protocol:set("protobuf"..tmp_cmdName)
+        print("Tdr"..tmp_cmdName)
+        pinfo.cols.protocol:set("Tdr"..tmp_cmdName)
         offset = offset+2 
 
 
@@ -171,21 +188,20 @@ do
         local bodyLen = string.format( "%d", "0x"..buf(offset, 4))
         offset = offset+4
 
-        pinfo.cols.protocol:append("godGames");
+        pinfo.cols.protocol:append("godGames")
         --t:add(f_feedback, buf(20, 4))  
         --t:add(f_bodylen, buf(24, 4))  
         if buf_len > 21 then  
             t:add(f_body, buf( headLen,buf:len()-headLen  ))  --t:add(f_body, buf( headLen,bodyLen )) 
         end  
         
-        local js = myproto_parseCmd(buf(headLen,buf:len()-headLen ),cmdid)
+        local js = myproto_parseCmd(buf(headLen,buf:len()-headLen ),cmdid,pinfo)
         t:add(f_json,json.encode(js)) 
+        
         ---------------test start--------------------
         local data2 = assert(pb.decode("TGCPBase", bytes  ))
         toLog(require "serpent".block(data2))
-
-
-
+   
         ---------------test end --------------------
         return true  
     end  
