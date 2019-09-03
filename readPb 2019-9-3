@@ -889,23 +889,24 @@ function loadPBFile(pb)
   path = string.sub(path, 2, -1) -- 去掉开头的"@"
   path = string.match(path, "^.*/") -- 捕获最后一个 "/" 之前的部分 就是我们最终要的目录部分
   path_files = {
-          "xls_enum.proto",
-          "common_data.proto",
-          "battle_data.proto",
           "c2s_cmd.proto",
-          "clan_data.proto",
           "errorcode.proto",
           "fileudsvr.proto",
-          "friend_data.proto",
-          "game_data.proto",
           "gamecore.proto",
-          "gamesvr.proto",
           "httpapisvr.proto",
-          "live_data.proto",
-          "mail_data.proto",
-          "rune_data.proto",
           "slice_data.proto",
+          --up proto have not  import other proto 
+          "xls_enum.proto",
+          "rune_data.proto",
+          "common_data.proto",
+          "battle_data.proto",
+          "game_data.proto",
+          "mail_data.proto",
+          "friend_data.proto",
+          "live_data.proto",
+          "clan_data.proto",
           "zonesvr.proto",
+          "gamesvr.proto",
           "zone_mail.proto"
     
 
@@ -913,14 +914,16 @@ function loadPBFile(pb)
   for i=1,18 do
     toLog(path.."protobuf_pb/"..path_files[i]..".pb")
     ret = assert(pb.loadfile(path.."protobuf_pb/"..path_files[i]..".pb") ) --pb.loadfile
-    for name in pb.fields "ZoneLoginReq" do
-      toLog("----"..tostring(name))
-    end
+    
     toLog(tostring(ret))
   end
   for name, basename, type in pb.types() do
     toLog("name:"..name .." basename:".. basename.." type:"..tostring(type) )
   end
+  for name, number, type in pb.fields(".moba_protocol.ZoneLoginReq") do
+    toLog("name888:"..name .." number:".. number.." type:"..tostring(type) )
+  end
+  toLog(pb.type(".moba_protocol.ZoneLoginReq")  )
 end
 -------------------------------------------define end----------
 
