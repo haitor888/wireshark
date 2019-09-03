@@ -1,0 +1,1199 @@
+local god_ZoneSvrCmd ={
+    ["0x0000"] = "",
+    ["0x0101"]     = "ONE_LOGIN_REQ               ",
+    ["0x0102"]     = "ONE_LOGIN_RSP               ",
+    ["0x0103"]     = "ONE_REGISTER_REQ            ",
+    ["0x0104"]     = "ONE_REGISTER_RSP            ",
+    ["0x0105"]     = "ONE_NAME_GET_REQ            ",
+    ["0x0106"]     = "ONE_NAME_GET_RSP            ",
+    ["0x0107"]     = "ONE_NAME_CHANGE_REQ         ",
+    ["0x0108"]     = "ONE_NAME_CHANGE_RSP         ",
+
+    ["0x0109"]     = "ONE_ROOM_CREATE_REQ         ",
+    ["0x010A"]     = "ONE_ROOM_CREATE_RSP         ",
+    ["0x010B"]     = "ONE_ROOM_INVITE_FRIEND_REQ  ",
+    ["0x010C"]     = "ONE_ROOM_INVITE_FRIEND_RSP  ",
+    ["0x010D"]     = "ONE_ROOM_INVITE_INNER_REQ   ",
+    ["0x010E"]     = "ONE_ROOM_INVITE_INNER_RSP   ",
+    ["0x0110"]     = "ONE_ROOM_JOIN_REQ           ",
+    ["0x0111"]     = "ONE_ROOM_JOIN_RSP           ",
+    ["0x0112"]     = "ONE_ROOM_EXIT_REQ 退出      ",
+    ["0x0113"]     = "ONE_ROOM_EXIT_RSP           ",
+    ["0x0114"]     = "ONE_ROOM_ADD_ROBOT_REQ增加机器人      ",
+    ["0x0115"]     = "ONE_ROOM_ADD_ROBOT_RSP      ",
+    ["0x0116"]     = "ONE_ROOM_CHANGE_TEAM_POS_REQ房间内换位置",
+    ["0x0117"]     = "ONE_ROOM_CHANGE_TEAM_POS_RSP",
+    ["0x0118"]     = "ONE_ROOM_DEL_PLAYER_REQ剔除玩家     ",
+    ["0x0119"]     = "ONE_ROOM_DEL_PLAYER_RSP     ",
+    ["0x011A"]     = "ONE_GAME_START_REQ          ",
+    ["0x011B"]     = "ONE_GAME_START_RSP          ",
+    ["0x011C"]     = "ONE_SELECT_CHAMPION_REQ     ",
+    ["0x011D"]     = "ONE_SELECT_CHAMPION_RSP     ",
+    ["0x011E"]     = "ONE_CONFIRM_CHAMPION_REQ    ",
+    ["0x011F"]     = "ONE_CONFIRM_CHAMPION_RSP    ",
+    ["0x0120"]     = "ONE_SELECT_AVATAR_REQ       ",
+    ["0x0121"]     = "ONE_SELECT_AVATAR_RSP       ",
+    ["0x0122"]     = "ONE_MATCH_REQ               ",
+    ["0x0123"]     = "ONE_MATCH_RSP               ",
+    ["0x0124"]     = "ONE_MATCH_CANCEL_REQ        ",
+    ["0x0125"]     = "ONE_MATCH_CANCEL_RSP        ",
+    ["0x0126"]     = "ONE_MATCH_CONFIRM_REQ       ",
+    ["0x0127"]     = "ONE_MATCH_CONFIRM_RSP       ",
+    ["0x0128"]     = "ONE_ROOM_CHAT_REQ           ",
+    ["0x0129"]     = "ONE_ROOM_CHAT_RSP           ",
+
+  
+    ["0x012A"]   = "ZONE_HEARTBEAT_REQ            ",
+    ["0x012B"]   = "ZONE_HEARTBEAT_RSP            ",
+
+    ["0x012C"]   = "ZONE_LIVE_LIST_REQ            ",
+    ["0x012D"]   = "ZONE_LIVE_LIST_RSP            ",
+    ["0x012E"]   = "ZONE_LIVE_WATCH_REQ           ",
+    ["0x012F"]   = "ZONE_LIVE_WATCH_RSP           ",
+
+    ["0x0133"]   = "ZONE_STATUS_CLEAN_REQ         ",
+    ["0x0134"]   = "ZONE_STATUS_CLEAN_RSP         ",
+
+    ["0x0135"]   = "ZONE_GET_GAME_RESULT_REQ      ",
+    ["0x0136"]   = "ZONE_GET_GAME_RESULT_RSP      ",
+
+    ["0x0137"]   = "ZONE_GET_PLAT_FRIEND_LIST_REQ ",
+    ["0x0138"]   = "ZONE_GET_PLAT_FRIEND_LIST_RSP ",
+
+    ["0x0139"]   = "ZONE_TEAM_MATCH_CREATE_REQ    ",
+    ["0x013A"]   = "ZONE_TEAM_MATCH_CREATE_RSP    ",
+
+    ["0x013B"]   = "ZONE_START_TEAM_MATCH_REQ     ",
+    ["0x013C"]   = "ZONE_START_TEAM_MATCH_RSP     ",
+
+   
+    ["0x013D"]   = "ZONE_GET_BAG_REQ              ",
+    ["0x013E"]   = "ZONE_GET_BAG_RSP              ",
+
+    ["0x0140"]   = "ZONE_USE_BAG_ITEM_REQ         ",
+    ["0x0141"]   = "ZONE_USE_BAG_ITEM_RSP         ",
+
+    ["0x0142"]   = "ZONE_SELL_BAG_ITEM_REQ        ",
+    ["0x0143"]   = "ZONE_SELL_BAG_ITEM_RSP        ",
+
+    ["0x0144"]   = "ZONE_CLI_BUFF_GET_REQ         ",
+    ["0x0145"]   = "ZONE_CLI_BUFF_GET_RSP         ",
+    ["0x0146"]   = "ZONE_CLI_BUFF_SET_REQ         ",
+    ["0x0147"]   = "ZONE_CLI_BUFF_SET_RSP         ",
+
+    ["0x014A"]   = "ZONE_MAIL_GET_LIST_REQ        ",      
+    ["0x014B"]   = "ZONE_MAIL_GET_LIST_RSP        ",      
+    ["0x014C"]   = "ZONE_MAIL_GET_REQ             ",      
+    ["0x014D"]   = "ZONE_MAIL_GET_RSP             ",      
+    ["0x014E"]   = "ZONE_MAIL_DEL_REQ             ",      
+    ["0x014F"]   = "ZONE_MAIL_DEL_RSP             ",      
+    ["0x0150"]   = "ZONE_MAIL_MOD_STATUS_REQ      ",      
+    ["0x0151"]   = "ZONE_MAIL_MOD_STATUS_RSP      ",      
+    ["0x0152"]   = "ZONE_MAIL_GET_ATTACHMENT_REQ  ",      
+    ["0x0153"]   = "ZONE_MAIL_GET_ATTACHMENT_RSP  ",      
+
+
+    ["0x0156"]   = "ZONE_TASK_QUERY_REQ           ",
+    ["0x0157"]   = "ZONE_TASK_QUERY_RSP           ",
+    ["0x0158"]   = "ZONE_TASK_REWARD_REQ          ",
+    ["0x0159"]   = "ZONE_TASK_REWARD_RSP          ",
+
+    ["0x0160"]   = "ZONE_CLI_PREF_SET_INT_REQ     ",
+    ["0x0161"]   = "ZONE_CLI_PREF_SET_INT_RSP     ",
+    ["0x0162"]   = "ZONE_CLI_PREF_SET_LIST_REQ    ",
+    ["0x0163"]   = "ZONE_CLI_PREF_SET_LIST_RSP    ",
+    ["0x0164"]   = "ZONE_CLI_PREF_DELETE_REQ      ",
+    ["0x0165"]   = "ZONE_CLI_PREF_DELETE_RSP      ",
+
+    ["0x0166"] = "ZONE_SELECT_SUMMOUR_ABILITY_REQ ",
+    ["0x0167"]  = "ZONE_SELECT_SUMMOUR_ABILITY_RSP",
+
+    ["0x0170"]   = "ZONE_MALL_BUY_ITEM_REQ        ",
+    ["0x0171"]   = "ZONE_MALL_BUY_ITEM_RSP        ",
+
+
+    ["0x0176"]   = "ZONE_CLI_PREF_SET_STR_REQ     ",
+    ["0x0177"]   = "ZONE_CLI_PREF_SET_STR_RSP     ",
+
+    ["0x0178"]   = "ZONE_TASK_MARK_REQ            ",
+    ["0x0179"]   = "ZONE_TASK_MARK_RSP            ",
+
+
+    ["0x0182"]   = "ZONE_FRIEND_REQ_ADD_REQ       ",
+    ["0x0183"]   = "ZONE_FRIEND_REQ_ADD_RSP       ",
+    ["0x0184"]   = "ZONE_FRIEND_REQ_LIST_REQ      ",
+    ["0x0185"]   = "ZONE_FRIEND_REQ_LIST_RSP      ",
+    ["0x0186"]   = "ZONE_FRIEND_REQ_DEL_REQ       ",
+    ["0x0187"]   = "ZONE_FRIEND_REQ_DEL_RSP       ",
+    ["0x0188"]   = "ZONE_FRIEND_REQ_CONFIRM_REQ   ",
+    ["0x0189"]   = "ZONE_FRIEND_REQ_CONFIRM_RSP   ",
+    ["0x018A"]   = "ZONE_SEARCH_PLAYER_BY_UIN_REQ ",
+    ["0x018B"]   = "ZONE_SEARCH_PLAYER_BY_UIN_RSP ",
+    ["0x018C"]   = "ZONE_INNER_FRIEND_DEL_REQ     ",
+    ["0x018D"]   = "ZONE_INNER_FRIEND_DEL_RSP     ",
+    ["0x018E"]   = "ZONE_FRIEND_REQ_ADD_BAN_REQ   ",
+    ["0x018F"]   = "ZONE_FRIEND_REQ_ADD_BAN_RSP   ",
+    ["0x0190"]   = "ZONE_GET_INNER_FRIEND_LIST_REQ",
+    ["0x0191"]   = "ZONE_GET_INNER_FRIEND_LIST_RSP",
+    ["0x0192"]   = "ZONE_SEND_FRIEND_COIN_REQ     ",
+    ["0x0193"]   = "ZONE_SEND_FRIEND_COIN_RSP     ",
+    ["0x0194"]  = "ZONE_FRIEND_DATA_CHANGED_NOTIFY",
+
+    ["0x019A"]   = "ZONE_CLI_STAT_REPORT_REQ      ",
+    ["0x019B"]   = "ZONE_CLI_STAT_REPORT_RSP      ",
+
+    ["0x01A0"]   = "ZONE_GET_PLAYER_STATISTICS_REQ",
+    ["0x01A1"]   = "ZONE_GET_PLAYER_STATISTICS_RSP",
+    ["0x01A2"]   = "ZONE_PLAYER_STATISTICS_NOTIFY ",
+
+    ["0x01A3"]   = "ZONE_STATISTICS_SETTING_REQ",
+    ["0x01A4"]   = "ZONE_STATISTICS_SETTING_RSP",
+
+    ["0x01A5"]       ="ZONE_SEARCH_PLAYER_DATA_REQ",
+    ["0x01A6"]      = "ZONE_SEARCH_PLAYER_DATA_RSP",
+
+
+    ["0x01AA"]               = "ZONE_SET_SCENE_REQ",
+    ["0x01AB"]               = "ZONE_SET_SCENE_RSP",
+
+
+    
+    ["0x01B1"]  = "ZONE_SET_PLAYER_ICON_AND_FRAME_REQ",
+    ["0x01B2"]  = "ZONE_SET_PLAYER_ICON_AND_FRAME_RSP",
+
+    ["0x01B3"]  = "ZONE_GET_PLAYER_ICONS_HAVE_GOT_REQ",
+    ["0x01B4"]  = "ZONE_GET_PLAYER_ICONS_HAVE_GOT_RSP",
+
+    ["0x01B9"]= "ZONE_RPT_PLAYER_LOCAL_TRAINING_REQ",
+    ["0x01BA"]= "ZONE_RPT_PLAYER_LOCAL_TRAINING_RSP",
+
+    ["0x01BB"]= "ZONE_ROOM_VOIP_MEMBER_RPT_REQ     ",
+    ["0x01BC"]= "ZONE_ROOM_VOIP_MEMBER_RPT_RSP     ",
+
+    ["0x01BD"]= "ZONE_EVENT_REPORT_REQ             ",
+    ["0x01BE"]= "ZONE_EVENT_REPORT_RSP             ",
+    ["0x01BF"]= "ZONE_USER_GUIDE_RPT_REQ           ",
+    ["0x01C0"]= "ZONE_USER_GUIDE_RPT_RSP           ",
+
+
+    ["0x01DD"]  ="ZONE_HG_REMINDED_REPORT_REQ    ", 
+    ["0x01DE"]  ="ZONE_HG_REMINDED_REPORT_RSP    ", 
+    
+    ["0x01DF"]  ="ZONE_HG_NOTIFY                 ", 
+
+    ["0x01F0"] ="ZONE_ROOM_INVITE_REFUSE_NOTIFY ",
+    ["0x01F1"] ="ZONE_ROOM_LIKE_NOTIFY          ",
+    ["0x01F2"] ="ZONE_KICK_OFF_NOTIFY           ",
+    ["0x01F3"] ="ZONE_ROOM_PLAYER_EXIT_NOTIFY   ",
+    ["0x01F4"] ="ZONE_MARQUEE_BROADCAST_NOTIFY  ",
+    ["0x01F5"] ="ZONE_ROOM_VOIP_MEMBER_NOTIFY   ",
+    ["0x01F6"] ="ZONE_MATCH_FAIL_NOTIFY         ",
+    ["0x01F7"] ="ZONE_PLAYER_MSG_NOTIFY         ", 
+    ["0x01F8"] ="ZONE_PLAYER_STATE_NOTIFY       ", 
+    ["0x01F9"] ="ZONE_PLAYER_INFO_NOTIFY        ", 
+    ["0x01FA"] ="ZONE_CANCLE_MATCH_NOTIFY       ",
+    ["0x01FB"] ="ZONE_ROOM_START_MATCH_NOTIFY   ",
+    ["0X01FC"] ="ZONE_ROOM_DEL_PALYER_NOTIFY    ",
+    ["0X01FD"] ="ZONE_ROOM_CHAT_NOTIFY          ",
+    ["0x01FE"] ="ZONE_ROOM_INVITE_NOTIFY        ",
+    ["0x01FF"] ="ZONE_ROOM_NOTIFY               ",
+    ["0x0200"] ="ZONE_PLAYER_SYNC_NOTIFY        ", 
+
+
+    ["0x0300"] ="ZONE_BROADCAST_NOTIFY_TEST     ",
+
+
+    ["0x0201"] ="ZONE_SEND_FRIEND_MSG_REQ       ", 
+    ["0x0202"] ="ZONE_SEND_FRIEND_MSG_RSP       ",
+    ["0x0203"] ="ZONE_SEND_WORLD_MSG_REQ        ", 
+    ["0x0204"] ="ZONE_SEND_WORLD_MSG_RSP        ",
+    ["0x0205"] ="ZONE_MSG_NOTIFY                ",
+
+    ["0x0207"] ="ZONE_SET_MSG_MASK_REQ          ", 
+    ["0x0208"] ="ZONE_SET_MSG_MASK_RSP          ",
+    ["0x0209"] ="ZONE_GET_MSG_MASK_REQ          ", 
+    ["0x020A"] ="ZONE_GET_MSG_MASK_RSP          ",
+    ["0x020B"] ="ZONE_UNSET_MSG_MASK_REQ        ", 
+    ["0x020C"] ="ZONE_UNSET_MSG_MASK_RSP        ",
+
+    ["0x020D"] ="ZONE_GET_PLAYER_SIMPLE_INFO_REQ", 
+    ["0x020E"] ="ZONE_GET_PLAYER_SIMPLE_INFO_RSP",
+
+    ["0x020F"] ="ZONE_LIVE_CHAT_REQ             ",
+    ["0x0210"] ="ZONE_LIVE_CHAT_RSP             ",
+    ["0x0211"] ="ZONE_LIVE_CHAT_MASK_REQ        ",
+    ["0x0212"] ="ZONE_LIVE_CHAT_MASK_RSP        ",
+
+    ["0x0213"] ="ZONE_CREDIT_QUERY_REQ          ",
+    ["0x0214"] ="ZONE_CREDIT_QUERY_RSP          ",
+    ["0x0215"] ="ZONE_CREDIT_REPORT_REQ         ",
+    ["0x0216"] ="ZONE_CREDIT_REPORT_RSP         ",
+
+
+    ["0x0250"] ="ZONE_ACHIEVEMENT_CUP_SET_REQ   ",
+    ["0x0251"] ="ZONE_ACHIEVEMENT_CUP_SET_RSP   ",
+
+    ["0x0252"] ="ZONE_LOGOUT_REQ                ",
+    ["0x0253"] ="ZONE_LOGOUT_RSP                ",
+
+    --查询玩家资产余额接口
+    ["0x0254"]   = "ZONE_GET_PLAYER_BALANCE_REQ  ",
+    ["0x0255"]   = "ZONE_GET_PLAYER_BALANCE_RSP  ",
+
+    -- 商城查询限购信息
+    ["0x025c"]   = "ZONE_GET_MALL_LIMIT_INFO_REQ ",
+    ["0x025d"]   = "ZONE_GET_MALL_LIMIT_INFO_RSP ",
+
+    --确认换位置
+    ["0x025e"]   = "ZONE_ROOM_CHANGE_TEAM_POS_CONFIRM_REQ",
+    ["0x025f"]   = "ZONE_ROOM_CHANGE_TEAM_POS_CONFIRM_RSP",
+
+
+    --排位赛 add by bravepan @2017-11-14 10:51
+    ["0x0264"]   = "ZONE_RANK_MATCH_MODE_REQ             ",
+    ["0x0265"]   = "ZONE_RANK_MATCH_MODE_RSP             ",
+    ["0x0266"]   = "ZONE_RANK_MATCH_SEND_RANK_INFO_REQ   ",
+    ["0x0267"]   = "ZONE_RANK_MATCH_SEND_RANK_INFO_RSP   ",
+
+    -- 设置玩家年龄描述用于购买额度限制
+    ["0x0268"]   = "ZONE_SET_PLAYER_AGE_DESC_REQ         ",
+    ["0x0269"]   = "ZONE_SET_PLAYER_AGE_DESC_RSP         ",
+
+    -- 查询玩家购买限额
+    ["0x026a"]   = "ZONE_GET_PLAYER_QUOTA_REQ            ",
+    ["0x026b"]   = "ZONE_GET_PLAYER_QUOTA_RSP            ",
+
+    -- 绑定邀请人
+    ["0x026c"]   = "ZONE_BIND_INVITER_REQ                ",
+    ["0x026d"]   = "ZONE_BIND_INVITER_RSP                ",
+
+    --碎片兑换
+    ["0x0272"]   = "ZONE_EXCHANGE_SLICE_REQ              ",
+    ["0x0273"]   = "ZONE_EXCHANGE_SLICE_RSP              ",
+    -- b测奖励发放
+    ["0x0274"]   = "ZONE_GRANT_REWARD_BETA_REQ           ",
+    ["0x0275"]   = "ZONE_GRANT_REWARD_BETA_RSP           ",
+
+    --模块配置变更，通知前台
+    ["0x0276"]   = "ZONE_NOTIFY_MODULE_MARK              ",
+
+    --排位赛匹配入口
+    ["0x0280"]      = "ZONE_RANK_MATCH_REQ            ",
+    ["0x0281"]      = "ZONE_RANK_MATCH_RSP            ",
+    ["0x0282"]      = "ZONE_TEAM_RANK_MATCH_CREATE_REQ",
+    ["0x0283"]      = "ZONE_TEAM_RANK_MATCH_CREATE_RSP",
+
+    ["0x0284"]      = "ZONE_TASK_DISPLAY_REQ          ",
+    ["0x0285"]      = "ZONE_TASK_DISPLAY_RSP          ",
+
+    ["0x0286"]      = "ZONE_RANKING_INFO_QUERY_REQ    ",
+    ["0x0287"]      = "ZONE_RANKING_INFO_QUERY_RSP    ",
+
+    --前台上报tlog接口
+    ["0x0288"]      = "ZONE_TLOG_REPORT_REQ           ",
+    ["0x0289"]      = "ZONE_TLOG_REPORT_RSP           ",
+
+    --红点设置
+    ["0x0292"]      = "ZONE_RED_POINT_SETTING_REQ     ",
+    ["0x0293"]      = "ZONE_RED_POINT_SETTING_RSP     ",
+
+    --client 点击某个红点
+    ["0x0294"]= "ZONE_CLICK_RED_POINT_REQ      ",
+    ["0x0295"]= "ZONE_CLICK_RED_POINT_RSP      ",
+
+    --拉取历史世界消息
+    ["0x0296"]= "ZONE_GET_HISTORY_WORLD_MSG_REQ",
+    ["0x0297"]= "ZONE_GET_HISTORY_WORLD_MSG_RSP",
+
+    --离线回流奖励通知
+    ["0x0298"]= "ZONE_OFFLINE_REWARD_NOTIFY ",
+
+    --创建战队
+    ["0x0299"] = "ZONE_CLAN_CREATE_REQ      ",
+    ["0x029A"] = "ZONE_CLAN_CREATE_RSP      ",
+
+    --查询多个战队的基本信息
+    ["0x029B"] = "ZONE_CLANS_QUERY_REQ      ",
+    ["0x029C"] = "ZONE_CLANS_QUERY_RSP      ",
+
+    --申请加入战队
+    ["0x029D"] = "ZONE_CLAN_JOIN_REQ        ",
+    ["0x029E"] = "ZONE_CLAN_JOIN_RSP        ",
+
+    --批准加入战队
+    ["0x02A0"] = "ZONE_CLAN_APPROVE_JOIN_REQ",
+    ["0x02A1"] = "ZONE_CLAN_APPROVE_JOIN_RSP",
+
+    --用点券升级战队
+    ["0x02A2"] = "ZONE_CLAN_UPGRADE_REQ     ",
+    ["0x02A3"] = "ZONE_CLAN_UPGRADE_RSP     ",
+
+    --购买战队商店里的商品
+    ["0x02A4"] = "ZONE_CLAN_BUY_GOODS_REQ   ",
+    ["0x02A5"] = "ZONE_CLAN_BUY_GOODS_RSP   ",
+
+    --刷新战队商店
+    ["0x02A6"] = "ZONE_CLAN_REFRESH_STORE_REQ",
+    ["0x02A7"] = "ZONE_CLAN_REFRESH_STORE_RSP",
+
+    --获取战队商店
+    ["0x02A8"] = "ZONE_CLAN_QUERY_STORE_REQ ",
+    ["0x02A9"] = "ZONE_CLAN_QUERY_STORE_RSP ",
+
+    --战队签到
+    ["0x02AA"] = "ZONE_CLAN_SIGNIN_REQ      ",
+    ["0x02AB"] = "ZONE_CLAN_SIGNIN_RSP      ",
+
+    --修改战队申请条件
+    ["0x02AC"]= "ZONE_CLAN_UPDATE_JOIN_LIMIT_REQ",
+    ["0x02AD"]= "ZONE_CLAN_UPDATE_JOIN_LIMIT_RSP",
+
+    --修改战队名
+    ["0x02AE"]= "ZONE_CLAN_UPDATE_NAME_REQ  ",
+    ["0x02AF"]= "ZONE_CLAN_UPDATE_NAME_RSP  ",
+
+    --修改战队logo
+    ["0x02B0"]= "ZONE_CLAN_UPDATE_LOGO_REQ  ",
+    ["0x02B1"]= "ZONE_CLAN_UPDATE_LOGO_RSP  ",
+
+    --修改战队宣言
+    ["0x02B2"]= "ZONE_CLAN_UPDATE_DEC_REQ   ",
+    ["0x02B3"]= "ZONE_CLAN_UPDATE_DEC_RSP   ",
+
+    --修改战队公告
+    ["0x02B4"]= "ZONE_CLAN_UPDATE_BBS_REQ   ",
+    ["0x02B5"]= "ZONE_CLAN_UPDATE_BBS_RSP   ",
+
+    --退出战队
+    ["0x02B6"]= "ZONE_CLAN_EXIT_REQ         ",
+    ["0x02B7"]= "ZONE_CLAN_EXIT_RSP         ",
+
+    --任命职位
+    ["0x02B8"]= "ZONE_CLAN_APPOINT_REQ      ",
+    ["0x02B9"]= "ZONE_CLAN_APPOINT_RSP      ",
+
+    --踢人
+    ["0x02BA"]= "ZONE_CLAN_KICKOUT_REQ      ",
+    ["0x02BB"]= "ZONE_CLAN_KICKOUT_RSP      ",
+
+    --邀请加入战队
+    ["0x02BC"]= "ZONE_CLAN_INVITE_REQ       ",
+    ["0x02BD"]= "ZONE_CLAN_INVITE_RSP       ",
+
+    --接受邀请加入战队
+    ["0x02BE"]= "ZONE_CLAN_ACCEPT_INVITE_REQ",
+    ["0x02BF"]= "ZONE_CLAN_ACCEPT_INVITE_RSP",
+
+    --发送战队邮件
+    ["0x02C0"]= "ZONE_CLAN_SEND_MAIL_REQ    ",
+    ["0x02C1"]= "ZONE_CLAN_SEND_MAIL_RSP    ",
+
+    --获取本战队信息
+    ["0x02C2"]= "ZONE_CLAN_INFO_GET_REQ     ",
+    ["0x02C3"]= "ZONE_CLAN_INFO_GET_RSP     ",
+
+    --获取战队列表
+    ["0x02C4"]= "ZONE_GET_CLAN_LIST_REQ     ",
+    ["0x02C5"]= "ZONE_GET_CLAN_LIST_RSP     ",
+
+    --发送战队招募
+    ["0x02C6"]= "ZONE_SEND_RECRUIT_REQ      ",
+    ["0x02C7"]= "ZONE_SEND_RECRUIT_RSP      ",
+
+    --获取招募列表
+    ["0x02C8"]= "ZONE_GET_RECRUIT_LIST_REQ  ",
+    ["0x02C9"]= "ZONE_GET_RECRUIT_LIST_RSP  ",
+
+    --按名字搜索战队
+    ["0x02CA"]= "ZONE_CLAN_NAME_SEARCH_REQ  ",
+    ["0x02CB"]= "ZONE_CLAN_NAME_SEARCH_RSP  ",
+
+    --检查战队名字
+    ["0x02CC"]       = "ZONE_CLAN_NAME_CHECK_REQ",
+    ["0x02CD"]       = "ZONE_CLAN_NAME_CHECK_RSP",
+
+    --结算协议
+    ["0x02CE"]       = "ZONE_GAME_FINISH_REQ    ",
+    ["0x02CF"]       = "ZONE_GAME_FINISH_RSP    ",
+
+    --领取新手引导奖励
+    ["0x02D0"]       ="ZONE_GET_GUIDE_REWARD_REQ",
+    ["0x02D1"]       ="ZONE_GET_GUIDE_REWARD_RSP",
+
+    --获取公共配置
+    ["0x02D2"]       ="ZONE_GET_GLOBAL_CONF_REQ",
+    ["0x02D3"]       ="ZONE_GET_GLOBAL_CONF_RSP",
+
+    --获取激活码列表
+    ["0x02D4"] = "ZONE_QUERY_CDKEY_LIST_REQ ",
+    ["0x02D5"] = "ZONE_QUERY_CDKEY_LIST_RSP ",
+
+    -- 设置开房间机器人AI等级
+    ["0x02D6"]= "ZONE_ROOM_SET_ROBOT_AI_LEVEL_REQ",
+    ["0x02D7"]= "ZONE_ROOM_SET_ROBOT_AI_LEVEL_RSP",
+
+    --战队数据改变推送通知
+    ["0x02D8"]   = "ZONE_CLAN_DATA_CHANGE_NOTIFY ",
+
+    -- 查询排行榜
+    ["0x02DA"]= "ZONE_QUERY_RANK_REQ",
+    ["0x02DB"]= "ZONE_QUERY_RANK_RSP",
+
+    --查询战队排行榜
+    ["0x02DC"]= "ZONE_CLAN_RANK_LIST_REQ",
+    ["0x02DD"]= "ZONE_CLAN_RANK_LIST_RSP",
+
+
+    --陌生人快速开局
+    ["0x02DE"] = "ZONE_JOIN_ROOM_BY_KEY_REQ",
+    ["0x02DF"] = "ZONE_JOIN_ROOM_BY_KEY_RSP",
+
+    --陌生人快速开局
+    ["0x02E0"]   = "ZONE_SET_ROOM_GAME_SETTING_REQ",
+    ["0x02E1"]   = "ZONE_SET_ROOM_GAME_SETTING_RSP",
+
+    ["0x02E2"] = "ZONE_SEND_PLAT_MSG_REQ", -- 发送平台消息
+    ["0x02E3"] = "ZONE_SEND_PLAT_MSG_RSP",
+
+    --设置战队的QQ群或者微信群Id
+    ["0x02E4"]= "ZONE_CLAN_UPDATE_GROUP_ID_REQ",
+    ["0x02E5"]= "ZONE_CLAN_UPDATE_GROUP_ID_RSP",
+
+
+    ["0x02E6"]= "ZONE_ROOM_REQUEST_INVITE_REQ ",
+    ["0x02E7"]= "ZONE_ROOM_REQUEST_INVITE_RSP ",
+--收到邀请显示通知，要确认是否接收
+    ["0x02E8"]= "ZONE_ROOM_REQUEST_INVITE_NOTIFY",
+
+    ["0x02E9"]      = "ZONE_CANCEL_HANG_UP_REQ",
+    ["0x02EA"]      = "ZONE_CANCEL_HANG_UP_RSP",
+
+
+    ["0x02EB"] = "ZONE_SEARCH_PLAYER_BY_NAME_REQ",
+    ["0x02EC"] = "ZONE_SEARCH_PLAYER_BY_NAME_RSP",
+
+    ["0x02ED"]     = "ZONE_ROOM_JOIN_BY_KEY_REQ",
+    ["0x02EE"]     = "ZONE_ROOM_JOIN_BY_KEY_RSP",
+
+    --设置战队数据域
+    ["0x02F1"]= "ZONE_CLAN_DATA_SETTING_REQ      ",
+    ["0x02F2"]= "ZONE_CLAN_DATA_SETTING_RSP      ",
+
+    --获取激战勋章信息
+    ["0x02F3"]= "ZONE_GET_BATTLE_PASS_INFO_REQ   ",
+    ["0x02F4"]= "ZONE_GET_BATTLE_PASS_INFO_RSP   ",
+    --领取取激战勋章等级奖励
+    ["0x02F5"]= "ZONE_GET_BATTLE_PASS_REWARD_REQ ",
+    ["0x02F6"]= "ZONE_GET_BATTLE_PASS_REWARD_RSP ",
+
+    --发送战队聊天信息
+    ["0x02F7"]= "ZONE_CLAN_CHAT_SEND_REQ         ",
+    ["0x02F8"]= "ZONE_CLAN_CHAT_SEND_RSP         ",
+
+    --获取激战勋章勋章墙信息
+    ["0x02F9"]= "ZONE_GET_BATTLE_PASS_HISTORY_REQ",
+    ["0x02FA"]= "ZONE_GET_BATTLE_PASS_HISTORY_RSP",
+
+    --任务随机请求
+    ["0x02FB"]     = "ZONE_TASK_RANDOM_REQ       ",
+    ["0x02FC"]     = "ZONE_TASK_RANDOM_RSP       ",
+
+    --激战勋章抽奖
+    ["0x02FD"]     = "ZONE_BATTLE_PASS_DRAW_REQ  ",
+    ["0x02FE"]     = "ZONE_BATTLE_PASS_DRAW_RSP  ",
+
+    --激活激战勋章勋章墙信息(客户端播放动画时发)
+    ["0x01D1"]= "ZONE_ACTIVE_BATTLE_PASS_HISTORY_REQ",
+    ["0x01D2"]= "ZONE_ACTIVE_BATTLE_PASS_HISTORY_RSP",
+
+
+    --退出观战, 观看好友直播，本地录像，主要是上报玩家当前为观战状态。
+    ["0x01D3"]       = "ZONE_EXIT_LIVE_WATCH_REQ  ",
+    ["0x01D4"]       = "ZONE_EXIT_LIVE_WATCH_RSP  ",
+
+    -- 安全反外挂相关协议
+    ["0x01D5"]       = "ZONE_SEND_ANTI_DATA_REQ   ",
+    ["0x01D6"]       = "ZONE_SEND_ANTI_DATA_RSP   ",
+    ["0x01D7"]       = "ZONE_DOWN_ANTI_DATA_NOTIFY",
+
+    --战队玩家信息变更推送给战队其他成员，推客户端
+    ["0x01DC"]       = "ZONE_CLAN_PLAYER_DATA_NOTIFY",
+
+    --设置国别国旗信息
+    ["0x0301"]       = "ZONE_SET_PLAYER_COUNTRY_INFO_REQ",
+    ["0x0302"]       = "ZONE_SET_PLAYER_COUNTRY_INFO_RSP",
+
+    --获取国别国旗信息
+    ["0x0303"]       = "ZONE_GET_PLAYER_COUNTRY_INFO_REQ",
+    ["0x0304"]       = "ZONE_GET_PLAYER_COUNTRY_INFO_RSP",
+    --点赞棋子评论
+    ["0x0305"]       = "ZONE_THUMB_CHESS_COMMENT_REQ    ",
+    ["0x0306"]       = "ZONE_THUMB_CHESS_COMMENT_RSP    ",
+
+    --发送棋子评论
+    ["0x0307"]       = "ZONE_SEND_CHESS_COMMENT_REQ     ",
+    ["0x0308"]       = "ZONE_SEND_CHESS_COMMENT_RSP     ",
+
+    --拉取棋子评论
+    ["0x0309"]       = "ZONE_GET_CHESS_COMMENT_REQ      ",
+    ["0x030A"]       = "ZONE_GET_CHESS_COMMENT_RSP      ",
+
+    -- 获取推荐好友
+    ["0x030B"]       = "ZONE_GET_RECOMMEND_FRIENDS_REQ  ",
+    ["0x030C"]       = "ZONE_GET_RECOMMEND_FRIENDS_RSP  ",
+    --获取最近同玩
+    ["0x030D"]       = "ZONE_GET_RECENT_PLAY_REQ        ",
+    ["0x030E"]       = "ZONE_GET_RECENT_PLAY_RSP        ",
+
+    --更改游戏内语言
+    ["0x030F"]= "ZONE_SET_GAME_LANGUAGE_REQ     ",
+    ["0x0310"]= "ZONE_SET_GAME_LANGUAGE_RSP     ",
+
+    --游戏分享成功
+    ["0x0311"]= "ZONE_SHARE_INFO_REQ            ",
+    ["0x0312"]= "ZONE_SHARE_INFO_RSP            ",
+
+    --拉取历史记录结算
+    ["0x0313"]= "ZONE_GET_HIS_RESULT_REQ        ",
+    ["0x0314"]= "ZONE_GET_HIS_RESULT_RSP        ",
+
+    --上报测速信息
+    ["0x0315"]= "ZONE_REPORT_SPEED_INFO_REQ     ",
+    ["0x0316"]= "ZONE_REPORT_SPEED_INFO_RSP     ",
+
+    ["0xAA01"]= "ZONE_SET_CHESS_BOARD_AVATAR_REQ",
+    ["0xAA02"]= "ZONE_SET_CHESS_BOARD_AVATAR_RSP",
+    ["0xAA03"]= "ZONE_SET_CHESS_ID_REQ          ",
+    ["0xAA04"]= "ZONE_SET_CHESS_ID_RSP          ",
+
+    --设置聊天语言
+    ["0xAA10"]= "ZONE_SET_LANGUAGE_REQ          ",
+    ["0xAA11"]= "ZONE_SET_LANGUAGE_RSP          ",
+
+    --设置当前激活的语言
+    ["0xAA12"]       = "ZONE_SET_LANGUAGE_ACT_REQ       ",
+    ["0xAA13"]       = "ZONE_SET_LANGUAGE_ACT_RSP       ",
+    --文本翻译
+    ["0xAA14"]       = "ZONE_TEXT_TRANSLATE_REQ         ",
+    ["0xAA15"]       = "ZONE_TEXT_TRANSLATE_RSP         ",
+    ["0xAA16"]       = "ZONE_ROOM_INVITE_TIMEOUT_NOTIFY ",
+
+
+    ["0xAA17"]       = "ZONE_SET_DEFAULT_ELO_REQ        ",
+    ["0xAA18"]       = "ZONE_SET_DEFAULT_ELO_RSP        ",
+
+    --玩家修改设置
+    ["0xAA19"]       = "ZONE_SET_OPTION_REQ             ",
+    ["0xAA1A"]       = "ZONE_SET_OPTION_RSP             ",
+    ["0xAA1B"]       = "ZONE_SEND_FRIEND_FLOWER_REQ     ",
+    ["0xAA1C"]       = "ZONE_SEND_FRIEND_FLOWER_RSP     ",
+
+    ["0xAA1D"]       = "ZONE_DEL_ACCOUNT_REQ            ",
+    ["0xAA1E"]       = "ZONE_DEL_ACCOUNT_RSP            ",
+
+    ["0xAA1F"]       = "ZONE_SET_TEAM_ID_REQ            ",
+    ["0xAA20"]       = "ZONE_SET_TEAM_ID_RSP            ",
+
+    ["0xAA21"]       = "ZONE_MATCH_PREPARE_REQ          ",
+    ["0xAA22"]       = "ZONE_MATCH_PREPARE_RSP          ",
+
+    --战区大师榜
+    ["0xAA23"]       = "ZONE_BATTLE_ZONE_MASTER_RANK_QUERY_REQ",
+    ["0xAA24"]       = "ZONE_BATTLE_ZONE_MASTER_RANK_QUERY_RSP",
+
+    ["0xAA25"]     = "ZONE_SET_GAME_MODE_REQ         ",
+    ["0xAA26"]     = "ZONE_SET_GAME_MODE_RSP         ",
+    ["0xAA27"]     = "ZONE_ROOM_CHANGE_GAME_MODE_REQ ",
+    ["0xAA28"]     = "ZONE_ROOM_CHANGE_GAME_MODE_RSP ",
+
+    ["0xAA29"]     = "ZONE_UPDATE_BATTLE_ZONE_REQ    ",
+    ["0xAA2A"]     = "ZONE_UPDATE_BATTLE_ZONE_RSP    ",
+
+    ["0xAA2B"]     = "ZONE_ROOM_INVITE_CONFIRM_REQ   ",
+    ["0xAA2C"]     = "ZONE_ROOM_INVITE_CONFIRM_RSP   ",
+
+    ["0xAA30"]     = "ZONE_MARKING_SYS_PUSH_NOTIFY   ",
+    ["0xAA32"]     = "ZONE_MARKING_SYS_CANCLE_REQ    ",
+    ["0xAA33"]     = "ZONE_MARKING_SYS_CANCLE_RSP    ",
+    ["0xAA34"]   = "ZONE_MARKING_SYS_DONE_REQ       ",
+    ["0xAA35"]   = "ZONE_MARKING_SYS_DONE_RSP       ",
+    ["0xAA36"]   = "ZONE_ROOM_OWNER_APPOINT_REQ     ",
+    ["0xAA37"]   = "ZONE_ROOM_OWNER_APPOINT_RSP     ",
+
+    ["0xAA38"]   = "ZONE_REPORT_PLAYER_REQ          ",
+    ["0xAA39"]   = "ZONE_REPORT_PLAYER_RSP          ",
+
+    ["0xAA3A"]       ="ZONE_GET_APPLY_INVITED_CLAN_REQ ",
+    ["0xAA3B"]       ="ZONE_GET_APPLY_INVITED_CLAN_RSP ",
+
+    ["0xAA3C"]   = "ZONE_GET_BATTLE_ARRAY_LIST_REQ  ",
+    ["0xAA3D"]   = "ZONE_GET_BATTLE_ARRAY_LIST_RSP  ",
+    ["0xAA3E"]   = "ZONE_SET_BATTLE_ARRAY_REQ       ",
+    ["0xAA3F"]   = "ZONE_SET_BATTLE_ARRAY_RSP       ",
+    ["0xAA40"]   = "ZONE_DEL_BATTLE_ARRAY_REQ       ",
+    ["0xAA41"]   = "ZONE_DEL_BATTLE_ARRAY_RSP       ",
+
+    ["0xAA42"]       = "ZONE_CLAN_UPDATE_FLAG_REQ         ",
+    ["0xAA43"]       = "ZONE_CLAN_UPDATE_FLAG_RSP         ",
+
+    --宝箱抽奖
+    ["0xAA44"]       = "ZONE_PRIZE_DRAW_REQ               ",
+    ["0xAA45"]       = "ZONE_PRIZE_DRAW_RSP               ",
+    
+
+    --设置特效id
+    ["0xAA46"]       = "ZONE_SET_CUSTOMIZE_EFFECT_REQ     ",
+    
+    ["0xAA47"]       = "ZONE_SET_CUSTOMIZE_EFFECT_RSP     ",
+
+    --宝箱幸运值查询
+    ["0xAA4A"]       = "ZONE_PRIZE_LUCKY_VALUE_REQ        ",
+    ["0xAA4B"]       = "ZONE_PRIZE_LUCKY_VALUE_RSP        ",   
+    ["0xAA4C"]       = "ZONE_ROOM_JOIN_BY_ID_REQ          ",
+    ["0xAA4D"]       = "ZONE_ROOM_JOIN_BY_ID_RSP          ",
+
+    --设置表情
+    ["0xAA48"]       = "ZONE_SET_EMOT_CARD_REQ            ",
+    ["0xAA49"]       = "ZONE_SET_EMOT_CARD_RSP            ",
+    --加入随机棋盘
+    ["0xAA50"]       = "ZONE_ADD_CHESSBOARD_RAND_REQ      ",
+    ["0xAA51"]       = "ZONE_ADD_CHESSBOARD_RAND_RSP      ",
+
+    ["0xAA52"]       = "ZONE_SET_CHESS_ID_DEFAULT_SKIN_REQ",
+    ["0xAA53"]       = "ZONE_SET_CHESS_ID_DEFAULT_SKIN_RSP",
+
+
+    --赛季主界面请求信息
+    ["0xAA54"]       = "ZONE_SEASON_INFO_QUERY_REQ        ",
+    ["0xAA55"]       = "ZONE_SEASON_INFO_QUERY_RSP        ",
+
+    --赛季玩家记录信息
+    ["0xAA56"]       = "ZONE_SEASON_RECORD_QUERY_REQ      ",
+    ["0xAA57"]       = "ZONE_SEASON_RECORD_QUERY_RSP      ",
+    ["0xAA58"]       = "ZONE_GET_ROOM_KEY_REQ             ",
+    ["0xAA59"]       = "ZONE_GET_ROOM_KEY_RSP             ",
+
+    ["0xAA5A"]       = "ZONE_LOGIN_RISK_REGION_CONFIRM_REQ",
+    ["0xAA5B"]       = "ZONE_LOGIN_RISK_REGION_CONFIRM_RSP",
+
+    ["0xAA5C"]       = "ZONE_GET_GAME_MODE_INFO_LIST_REQ  ",
+    ["0xAA5D"]       = "ZONE_GET_GAME_MODE_INFO_LIST_RSP  ",
+
+    ["0xAA5E"]       = "ZONE_QUESTION_GET_SUMMARY_REQ     ",
+    ["0xAA5F"]       = "ZONE_QUESTION_GET_SUMMARY_RSP     ",
+    ["0xAA60"]       = "ZONE_QUESTION_NEXT_QUESTION_REQ   ",
+    ["0xAA61"]       = "ZONE_QUESTION_NEXT_QUESTION_RSP   ",
+    ["0xAA62"]       = "ZONE_QUESTION_ANSWER_REQ          ",
+    ["0xAA63"]       = "ZONE_QUESTION_ANSWER_RSP          ",
+    ["0xAA64"]       = "ZONE_QUESTION_GET_GIFT_REQ        ",
+    ["0xAA65"]   = "ZONE_QUESTION_GET_GIFT_RSP       ",
+
+    ["0xAA66"]   = "ZONE_CLAN_REWARD_REQ             ",
+    ["0xAA67"]   = "ZONE_CLAN_REWARD_RSP             ",
+    ["0xAA68"]   = "ZONE_CLAN_QUERY_REWARDERS_REQ    ",
+    ["0xAA69"]   = "ZONE_CLAN_QUERY_REWARDERS_RSP    ",
+
+    ["0xAA6A"]   = "ZONE_HERO_STORY_STATE_REQ        ",
+    ["0xAA6B"]   = "ZONE_HERO_STORY_STATE_RSP        ",
+    ["0xAA6C"]   = "ZONE_HERO_STORY_READ_REPORT_REQ  ",
+    ["0xAA6D"]   = "ZONE_HERO_STORY_READ_REPORT_RSP  ",
+
+    ["0xAA6E"]   = "ZONE_CLAN_ACTIVE_REWARD_REQ      ",
+    ["0xAA6F"]   = "ZONE_CLAN_ACTIVE_REWARD_RSP      ",
+
+    ["0xAA70"]   = "ZONE_GET_SHARE_ROOM_INFO_REQ     ",
+    ["0xAA71"]   = "ZONE_GET_SHARE_ROOM_INFO_RSP     ",
+
+    ["0xAA72"]   = "ZONE_CLAN_QUERY_SPECIAL_REQ      ",
+    ["0xAA73"]   = "ZONE_CLAN_QUERY_SPECIAL_RSP      ",
+
+    ["0xAA74"]   = "ZONE_CLAN_GET_INVITEES_REQ       ",
+    ["0xAA75"]   = "ZONE_CLAN_GET_INVITEES_RSP       ",
+    
+    ["0xAA76"]   = "ZONE_FIRST_CHAMPION_DAILY_NOTIFY ",  --每日第一次夺冠推送
+    ["0xAA77"]   = "ZONE_FIRST_CHAMPION_WEEKLY_NOTIFY",  --每周第一次夺冠推送
+
+    ["0xAA78"]   = "ZONE_CLAN_REPORT_REQ             ",
+    ["0xAA79"]   = "ZONE_CLAN_REPORT_RSP             ",
+
+    --game svr
+    --MESSAGE_TYPE_GAME           = 0x03,
+    --GAME_HEART_BEAT             = 0x0300, --心跳
+    ["0x0301"]       = "GAME_JOIN_REQ           ", --加入单局
+    ["0x0302"]       = "GAME_JOIN_RSP           ",
+    ["0x0303"]       = "GAME_LOAD_RES_REQ       ", --上报进度
+    ["0x0304"]       = "GAME_LOADRES_RPT_NOTIFY ",
+    ["0x0305"]       = "GAME_START_NOTIFY       ", --开启单局
+    ["0x0306"]       = "GAME_LOGIC_ACTION_SEND  ", --行动指令
+    ["0x0307"]       = "GAME_LOGIC_FRAME_SYNC   ", --帧下发
+    ["0x0308"]       = "GAME_LOGIC_END_REPORT   ", --单局结束上报
+    ["0x0309"]       = "GAME_LOGIC_END_NOTIFY   ", --单局结束通知
+    ["0x0310"]       = "GAME_PING_REQ           ",
+    ["0x0311"]       = "GAME_PING_RSP           ",
+    ["0x0312"]      = "GAME_OBJ_HASH_CODE_REQ",
+    ["0x0313"]      = "GAME_OBJ_HASH_CODE_RSP",
+    ["0x0316"]       = "GAME_GET_LOST_FRAME_REQ   ", --获取丢失帧请求
+    ["0x0317"]       = "GAME_PLAYER_EXIT_REQ      ", --玩家退出请求
+    ["0x0318"]       = "GAME_PLAYER_EXIT_RSP      ", --玩家退出请求
+    ["0x0323"]       = "GAME_READY_REQ            ",
+    ["0x0324"]       = "GAME_READY_RSP            ",
+    ["0x0325"]       = "GAME_RECONNECT_REQ        ",
+    ["0x0326"]       = "GAME_RECONNECT_RSP        ",
+    ["0x0327"]       = "GAME_FINISH_REQ           ",
+    ["0x0328"]       = "GAME_FINISH_RSP           ",
+    ["0x0329"]       = "GAME_ANALYSIS_REQ         ",
+    ["0x032A"]       = "GAME_ANALYSIS_RSP         ",
+    ["0x032B"]       = "GAME_HOSTING_LIST_NOTIFY  ",
+    ["0x032C"]       = "GAME_MSG_NOTIFY           ",
+    ["0x032D"]       = "GAME_ROUND_STATE_NOTIFY   ",
+    ["0x032E"]       = "GAME_ROUND_FINISH_REQ     ",
+    ["0x032F"]       = "GAME_ROUND_FINISH_RSP     ",
+    ["0x0330"]       = "GAME_ROUND_FINISH_NOTIFY  ",
+    ["0x0331"]       = "GAME_CARD_OPERATION_REQ   ",
+    ["0x0332"]       = "GAME_CARD_OPERATION_RSP   ",
+    ["0x0333"]       = "GAME_CARD_OPERATION_NOTIFY",
+    ["0x0334"]= "GAME_PVP_PLAYER_EXP_BUY_REQ",
+    ["0x0335"]= "GAME_PVP_PLAYER_EXP_BUY_RSP",
+    ["0x0336"]       = "GAME_PVP_PLAYER_NOTIFY    ",
+    ["0x0337"]       = "GAME_CARD_POOL_REFRESH_REQ",
+    ["0x0338"]       = "GAME_CARD_POOL_REFRESH_RSP",
+    ["0x0339"]       = "GAME_CARD_BUY_REQ         ",
+    ["0x033A"]       = "GAME_CARD_BUY_RSP         ",
+    ["0x033B"]       = "GAME_CARD_POOL_LOCK_REQ   ",
+    ["0x033C"]       = "GAME_CARD_POOL_LOCK_RSP   ",
+    ["0x033D"]       = "GAME_CARD_SELL_REQ        ",
+    ["0x033E"]       = "GAME_CARD_SELL_RSP        ",
+    ["0x033F"]       = "GAME_CARD_CHANGE_NOTIFY   ",
+    ["0x0340"]       = "GAME_BATTLE_FINISH_NOTIFY ",
+    ["0x0341"]       = "GAME_ROUND_NOTIFY_TRIGGER_REQ",
+    ["0x0342"]       = "GAME_ROUND_NOTIFY_TRIGGER_RSP",
+    ["0x0343"]       = "GAME_CARD_MANUAL_COMBINE_REQ ",
+    ["0x0344"]       = "GAME_CARD_MANUAL_COMBINE_RSP ",
+    ["0x0345"]   = "GAME_ROUND_STATISTICS_REQ",
+    ["0x0346"]   = "GAME_ROUND_STATISTICS_RSP",
+    --怪物死亡通知  非自己棋盘的怪物死亡也会有通知
+    ["0x0347"]= "GAME_MONSTER_DEAD_REQ      ",
+    ["0x0348"]= "GAME_MONSTER_DEAD_RSP      ",
+
+    ["0x0349"]= "GAME_ROUND_HASH_CODE_REQ   ",
+    ["0x0350"]= "GAME_ROUND_HASH_CODE_RSP   ",
+    ["0x0351"]= "GAME_ROUND_HASH_CODE_NOTIFY",
+    ["0x0352"]= "GAME_SET_RECOMMEND_REQ     ",
+    ["0x0353"]= "GAME_SET_RECOMMEND_RSP     ",
+    ["0x0354"]= "GAME_EQUIP_FIT_REQ         ",
+    ["0x0355"]= "GAME_EQUIP_FIT_RSP         ",
+    ["0x0356"]= "GAME_EQUIP_NOTIFY          ",
+    ["0x0357"]= "GAME_CARD_BATCH_OPERATION_REQ",
+    ["0x0358"]= "GAME_CARD_BATCH_OPERATION_RSP",
+
+    ["0x0359"]     = "GAME_CARD_MOVE_NOTIFY ",
+    ["0x035A"]     = "GAME_CARD_MOVE_REQ    ",
+    ["0x035B"]     = "GAME_CARD_MOVE_RSP    ",
+
+    ["0x035C"]       = "GAME_SET_OPTION_REQ ",
+    ["0x035D"]       = "GAME_SET_OPTION_RSP ",
+
+
+    --备战区棋子排序后通知
+    ["0x035E"]      = "GAME_CARD_SORT_NOTIFY",
+    ["0x035F"]= "GAME_CARD_POOL_REFRESH_NOTIFY",
+
+    --卡池某张是否锁定
+    ["0x0360"]   = "GAME_CARD_ITEM_LOCK_REQ  ",
+    ["0x0361"]   = "GAME_CARD_ITEM_LOCK_RSP  ",
+
+    ["0x0363"]= "GAME_RESOURCE_CHANGE_NOTIFY",
+
+    ["0x0364"]   = "GAME_LIVE_NOTIFY         ",
+
+    -- 标记录像开始结束
+    ["0x0365"]   = "GAME_RECORD_START        ",
+    ["0x0366"]   = "GAME_RECORD_END          ",
+
+    -- 魔宠技能
+    ["0x0367"]   = "GAME_PET_SKILL_USE_REQ   ",
+    ["0x0368"]   = "GAME_PET_SKILL_USE_RSP   ",
+    ["0x0369"]   = "GAME_PET_SKILL_SEL_REQ   ",
+    ["0x036A"]   = "GAME_PET_SKILL_SEL_RSP   ",
+
+    ["0x036B"]   = "GAME_PET_SKILL_NOTIFY    ",
+
+    ["0x036D"]   = "GAME_EQUIP_UNFIT_REQ     ",
+    ["0x036F"]   = "GAME_EQUIP_UNFIT_RSP     ",
+    ["0x0370"]   = "GAME_EQUIP_BOX_SEL_REQ   ",
+    ["0x0371"]   = "GAME_EQUIP_BOX_SEL_RSP   ",
+    ["0x0372"]   = "GAME_EQUIP_BOX_NOTIFY    ",
+
+
+    ["0x2A01"]   = "GAME_CORE_CALC_REQ       ",
+    ["0x2A02"]   = "GAME_CORE_CALC_RSP       ",
+
+    ["0x2A04"]   = "GAME_CORE_VERSION_NOTIFY ",
+
+    ["0x2901"]= "HTTP_API_TRANSLATE_REQ",
+    ["0x2902"]= "HTTP_API_TRANSLATE_RSP",
+    ["0x2903"]= "HTTP_API_CHECK_ICON_REQ",
+    ["0x2904"]= "HTTP_API_CHECK_ICON_RSP",
+    ["0x2905"]= "HTTP_API_CREDIT_SCORE_REQ",
+    ["0x2906"]= "HTTP_API_CREDIT_SCORE_RSP",
+    ["0x2907"]= "HTTP_API_GUIDE_REPORT_REQ",
+    ["0x2908"]= "HTTP_API_GUIDE_REPORT_RSP",
+}
+local pb = require "pb"
+local pbio   = require "pb.io"
+local buffer = require "pb.buffer"
+local slice  = require "pb.slice"
+local conv   = require "pb.conv"
+
+--loadfile("protoc.lua")
+local protoc = require "protoc"
+local json = require "json"
+
+
+
+function findCmdDescription(cmdid)
+  cmdid = string.sub(cmdid ,3 )
+  if god_ZoneSvrCmd["0x"..cmdid] ~= nil then
+    return  god_ZoneSvrCmd["0x"..cmdid]
+  elseif god_ZoneSvrCmd["0x"..string.lower(cmdid) ] ~= nil then
+    return  god_ZoneSvrCmd["0x"..string.lower(cmdid)]
+  elseif god_ZoneSvrCmd["0x"..string.upper(cmdid)] ~= nil then
+    return  god_ZoneSvrCmd["0x"..string.upper(cmdid)]
+  else
+    return "===="
+  end
+end
+
+function toLog(logmsg)
+  local time = os.date("%Y/%m/%d %H:%M:%S", os.time());
+  local year, mon, mday, hour, min, sec = string.match(time, "(%d+)/(%d+)/(%d+) (%d+):(%d+):(%d+)");
+  local file = io.open("/Users/georgehu/Desktop/testlua.log","a")
+  file:write(string.format("%d-%d-%d %02d:%02d:02d",year,mon,mday,hour,min,sec).."    "..logmsg.."\n")
+  file:close()
+end
+function loadfile(filename)
+  local info = debug.getinfo(1,"S")
+  local path = info.source
+  path = string.sub(path, 2, -1) -- 去掉开头的"@"
+  path = string.match(path, "^.*/") -- 捕获最后一个 "/" 之前的部分 就是我们最终要的目录部分
+  local logmsg = "LoadFile:"..path..filename
+  local file = io.open(path..filename ,"rb")
+  if file then file:close() end
+  logmsg = logmsg.."("..string.format("%d",file~=nil and 1 or 0 )..")" 
+  toLog(logmsg)
+  dofile(path..filename)
+end
+function loadPBFile(pb)
+  local info = debug.getinfo(1,"S")
+  local path = info.source
+  path = string.sub(path, 2, -1) -- 去掉开头的"@"
+  path = string.match(path, "^.*/") -- 捕获最后一个 "/" 之前的部分 就是我们最终要的目录部分
+  path_files = {
+          "c2s_cmd.proto",
+          "errorcode.proto",
+          "fileudsvr.proto",
+          "gamecore.proto",
+          "httpapisvr.proto",
+          "slice_data.proto",
+          --up proto have not  import other proto 
+          "xls_enum.proto",
+          "rune_data.proto",
+          "common_data.proto",
+          "battle_data.proto",
+          "game_data.proto",
+          "mail_data.proto",
+          "friend_data.proto",
+          "live_data.proto",
+          "clan_data.proto",
+          "zonesvr.proto",
+          "gamesvr.proto",
+          "zone_mail.proto"
+    
+
+  }
+  for i=1,18 do
+    toLog(path.."protobuf_pb/"..path_files[i]..".pb")
+    ret = assert(pb.loadfile(path.."protobuf_pb/"..path_files[i]..".pb") ) --pb.loadfile
+    
+    toLog(tostring(ret))
+  end
+  for name, basename, type in pb.types() do
+    toLog("name:"..name .." basename:".. basename.." type:"..tostring(type) )
+  end
+  for name, number, type in pb.fields("ZoneLoginReq") do
+    toLog("name888:"..name .." number:".. number.." type:"..tostring(type) )
+  end
+  
+end
+-------------------------------------------define end----------
+
+
+-- load schema from text
+loadPBFile(pb)
+
+toLog("type:"..pb.type("ZoneLoginReq")  )
+toLog("type:"..pb.type("ZoneLoginRsp")  )
+
+assert(protoc:load [[
+   message Phone {
+      optional string name        = 1;
+      optional int64  phonenumber = 2;
+   }
+   message Person {
+      optional string name     = 1;
+      optional int32  age      = 2;
+      optional string address  = 3;
+      repeated Phone  contacts = 4;
+   } 
+   message TGCPBase {
+    optional int32 Magic = 1;
+    optional uint32 HeadVersion = 2;
+    optional uint32 BodyVersion = 3;
+    optional uint32 Command = 4;
+    optional uint32 Encrypted = 5;
+    optional uint32 Sequence = 6;
+    optional uint32 HeadLen = 7;
+    optional uint32 BodyLen = 8;
+   }
+    
+   ]])
+
+-- lua table data
+local data = {
+   name = "ilse",
+   age  = 18,
+   contacts = {
+      { name = "alice", phonenumber = 12312341234 },
+      { name = "bob",   phonenumber = 45645674567 }
+   }
+}
+
+-- encode lua table data into binary format in lua string and return
+local bytes = assert(pb.encode("Person", data))
+
+toLog(pb.tohex(bytes))
+-- and decode the binary data back into lua table
+local data2 = assert(pb.decode("Person", bytes))
+toLog(require "serpent".block(data2))
+
+
+
+local data88 = {
+    report_type = 1,
+    data  = 1
+   
+}
+
+-- encode lua table data into binary format in lua string and return
+local bytes888 = assert(pb.encode("ZoneEventReportReq", data88))
+toLog(pb.tohex(bytes888))
+data2 = assert(pb.decode("ZoneEventReportReq", bytes888))
+toLog("ZoneEventReportReq"..require "serpent".block(data2))
+
+
+
+
+toLog("type:"..pb.type("Person")  )
+
+toLog("type:"..pb.type("ZoneEventReportRsp")  )
+
+
+do  
+    local tgcp_cmd ={["0x1001"]="上行，握手", 
+            ["0x1002"]="下行，响应",
+            ["0x2001"]="上行，认证请求",
+            ["0x2002"]="下行，认证响应",
+            ["0x3002"]="下行，排队信息",
+            ["0x4013"]="双向，数据",
+            ["0x5001"]="上行，CLIENT 发起断开",
+            ["0x5002"]="下行，TCONND 发起断开",
+            ["0x6002"]="下行，通知客户端连接已建立",
+            ["0x7001"]="上行，鉴权刷新请求",
+            ["0x7002"]="双向，鉴权刷新通知",
+            ["0x8002"]="下行，TCONND发起路由切换的命令",
+            ["0x9001"]="双向，心跳探测",
+
+
+    }
+
+    local p_myproto = Proto("myproto","MyProto")  
+    local f_magic = ProtoField.int16("myproto.f_magic", "magic", base.DEC)  
+    local f_headVersion = ProtoField.int16("myproto.f_headVersion", "HeadVersion", base.DEC, {[0] = "old", [11] = "new"}) 
+    local f_bodyVersion = ProtoField.int16("myproto.f_bodyVersion", "bodyVersion", base.DEC, {[0] = "old", [11] = "new"}) 
+    local f_cmdid = ProtoField.uint16("myproto.f_cmdid", "cmdId", base.HEX) 
+    
+    local f_encrypt = ProtoField.uint8("myproto.f_encrypt", "f_encrypt", base.DEC)  
+    local f_sequence = ProtoField.uint32("myproto.f_sequence", "f_sequence", base.DEC) 
+
+    local f_headlength = ProtoField.uint32("myproto.f_headlength", "f_headlength", base.DEC)  
+    local f_bodylength = ProtoField.uint32("myproto.f_bodylength", "f_bodylength", base.DEC) 
+
+    --local f_feedback = ProtoField.int32("myproto.feedback", "Feedback", base.DEC)  
+    --local f_bodylen = ProtoField.uint32("myproto.bodylen", "BodyLen", base.DEC)  
+    local f_body = ProtoField.bytes("myproto.body", "Body")  
+    local f_json = ProtoField.string("myproto.json", "json")  
+    p_myproto.fields = { f_magic, f_headVersion,f_bodyVersion,f_cmdid, f_encrypt, f_sequence, f_headlength, f_bodylength, f_body ,f_json}  
+  
+    local data_dis = Dissector.get("data")  
+  
+    
+
+    function getGamePkgData(buf)
+        if buf:len() == 0 then
+          return buf
+        elseif "0x"..buf:range(0 ,2) == "0x55aa" then
+          return buf
+        else 
+          return buf:range(4,buf:len()-4 )
+        end
+    end
+    function string.fromhex(str)
+        return (str:gsub('..', function (cc)
+            return string.char(tonumber(cc, 16))
+        end))
+    end
+    function myproto_parseCmd(buf,cmdid,pinfo)
+        local js= {}
+        js["DataLength"] = buf:len()
+        local jsbody={}
+        if cmdid == "0x2001" then 
+          jsbody["authType"] = string.format( "%d", "0x"..buf(0 ,2))
+          jsbody["size"] = string.format( "%d", "0x"..buf(2,2))
+          jsbody["appid"] = string.format( "%d", "0x"..buf(4,1))
+          jsbody["authlen"] = string.format( "%d", "0x"..buf(5,2))
+          jsbody["authinfo"] = string.format( "%d", "0x"..buf(7,1))
+          js["TGCPAuthReqBody"]= jsbody
+        elseif cmdid=="0x2002" then
+          jsbody["account_type"] = string.format( "%d", "0x"..buf(0 ,2))
+          jsbody["account_format"] = string.format( "%d", "0x"..buf(2 ,1))
+
+          jsbody["account_uid"] = jsbody
+          --if()
+          jsbody["account_value"] = string.format( "%d", "0x"..buf(buf:len()-11 ,2))
+          --jsbody["account_uid"] = string.format( "%d", "0x"..buf(buf:len()-8 ,8))
+          js["TGCPAuthRspBody"]= jsbody
+        elseif cmdid=="0x2002" then
+          --
+        elseif cmdid=="0x4013" then
+          buf = getGamePkgData(buf)
+          
+          
+          jsbody["cmdid"] = "0x"..buf:range(18 ,2)
+          pinfo.cols.protocol:append(jsbody["cmdid"] )
+          pinfo.cols.protocol:append(findCmdDescription(jsbody["cmdid"])  )
+          if jsbody["cmdid"] == "0x01bd" then 
+
+            toLog(jsbody["cmdid"].." uin:"..tostring(buf:range(26,buf:len()-26) ):fromhex() )
+            local data2 = assert(pb.decode("ZoneEventReportReq",tostring(buf:range(26,buf:len()-26) ):fromhex() ))
+            toLog("ZoneEventReportReq88888"..require "serpent".block(data2))
+
+            toLog("ZoneEventReportReq")
+          end
+          --toLog( buf)
+          jsbody["dataHex"] = string.format( "%s", "0x"..buf)
+          js["TGCPDATABody"]= jsbody
+          --
+        else
+          js["other"]= buf
+        end
+        return js
+    end 
+    function myproto_dissectorUDP(buf, pinfo, root)
+        local buf_len = buf:len()  
+        --判断长度是否符合头长度  
+        if buf_len < 33 then return false end  
+        local t = root:add(p_myproto, buf)  
+        local offset = 0
+
+        local gamePos =0
+        for i=1,buf_len,1 do
+          if i+2<= buf_len and "0x"..buf:range(i,2) =="0x55aa" then
+            gamePos = i
+          end
+        end
+        local tmp_cmdName = "0x"..buf(gamePos+4, 2)
+        pinfo.cols.protocol:set("UDP:GodGames"..tmp_cmdName)
+        --toLog("UDP"..tmp_cmdName..findCmdDescription(tmp_cmdName))
+        pinfo.cols.protocol:append(findCmdDescription(tmp_cmdName)  )
+        
+        ---------------test end --------------------
+    end
+    function myproto_dissector(buf, pinfo, root) 
+        local buf_len = buf:len()  
+        --判断长度是否符合头长度  
+        if buf_len < 21 then return false end  
+  
+        local t = root:add(p_myproto, buf)  
+        local offset = 0
+        t:add(f_magic, buf(offset, 2)) 
+        offset = offset+2 
+        t:add(f_headVersion, buf(offset, 2)) 
+        offset = offset+2 
+        t:add(f_bodyVersion, buf(offset, 2)) 
+        offset = offset+2 
+        t:add(f_cmdid, buf(offset, 2))
+        local tmp_cmdName = "0x"..buf(offset, 2)
+        local cmdid = tmp_cmdName
+        if tmp_cmdName == nil then
+            tmp_cmdName = "0x"..buf(offset, 2)
+        elseif tgcp_cmd["0x"..buf(offset, 2)] ~=nil then
+            tmp_cmdName = "0x"..buf(offset, 2)..tgcp_cmd["0x"..buf(offset, 2)]
+        end 
+        print("TCP:Tdr"..tmp_cmdName)
+        pinfo.cols.protocol:set("TCP:Tdr"..tmp_cmdName)
+        offset = offset+2 
+
+
+        t:add(f_encrypt, buf(offset, 1)) 
+        offset = offset+1
+
+        t:add(f_sequence, buf(offset, 4))  
+        offset = offset+4
+
+        t:add(f_headlength, buf(offset, 4)) 
+        local headLen = string.format( "%d", "0x"..buf(offset, 4))
+        print(headLen)
+        offset = offset+4 
+        t:add(f_bodylength, buf(offset, 4)) 
+        local bodyLen = string.format( "%d", "0x"..buf(offset, 4))
+        offset = offset+4
+
+        pinfo.cols.protocol:append("godGames")
+        --t:add(f_feedback, buf(20, 4))  
+        --t:add(f_bodylen, buf(24, 4))  
+        if buf_len > 21 then  
+            t:add(f_body, buf( headLen,buf:len()-headLen  ))  --t:add(f_body, buf( headLen,bodyLen )) 
+        end  
+        
+        local js = myproto_parseCmd(buf(headLen,buf:len()-headLen ),cmdid,pinfo)
+        js["DATA"] = tostring(buf:range(0,buf:len() ))
+        t:add(f_json,json.encode(js)) 
+        --toLog(json.encode(js))
+        ---------------test start protobuf--------------------
+        --local data2 = assert(pb.decode("TGCPBase", bytes  ))
+        --toLog(require "serpent".block(data2))
+        return true   
+    end  
+  
+    function p_myproto.dissector(buf, pinfo, root)   
+        local baseProtocol = tostring(pinfo.cols.protocol)
+        if baseProtocol=="TCP"  and myproto_dissector(buf, pinfo, root) then  
+            --valid myproto diagram  
+        elseif baseProtocol=="UDP"  then
+          myproto_dissectorUDP(buf, pinfo, root)
+        else  
+            data_dis:call(buf, pinfo, root)  
+        end 
+
+    end  
+
+     
+  
+    --解析TCP8001端口数据包  
+     local tcp_encap_table = DissectorTable.get("tcp.port")  
+     tcp_encap_table:add(8096, p_myproto)  
+     local udptab = DissectorTable.get("udp.port")
+     udptab:add(8096, p_myproto)
+
+    --dofile(path.."protobuf.lua")
+end  
